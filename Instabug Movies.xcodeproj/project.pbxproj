@@ -98,11 +98,7 @@
 			isa = PBXGroup;
 			children = (
 				54DB36F3221F3CA300045630 /* AppDelegate.swift */,
-				54DB36F5221F3CA300045630 /* ViewController.swift */,
-				54DB36F7221F3CA300045630 /* Main.storyboard */,
-				54DB36FA221F3CA400045630 /* Assets.xcassets */,
-				54DB36FC221F3CA400045630 /* LaunchScreen.storyboard */,
-				54DB36FF221F3CA400045630 /* Info.plist */,
+				54DB3721221F3E6D00045630 /* Architecture */,
 			);
 			path = "Instabug Movies";
 			sourceTree = "<group>";
@@ -123,6 +119,74 @@
 				54DB3715221F3CA400045630 /* Info.plist */,
 			);
 			path = "Instabug MoviesUITests";
+			sourceTree = "<group>";
+		};
+		54DB3721221F3E6D00045630 /* Architecture */ = {
+			isa = PBXGroup;
+			children = (
+				54DB3724221F3E6D00045630 /* Controller */,
+				54DB3722221F3E6D00045630 /* ViewModel */,
+				54DB3723221F3E6D00045630 /* Network */,
+				54DB3725221F3E6D00045630 /* Model */,
+				54DB3726221F3E6D00045630 /* View */,
+				54DB3728221F3E9300045630 /* Assets */,
+			);
+			path = Architecture;
+			sourceTree = "<group>";
+		};
+		54DB3722221F3E6D00045630 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		54DB3723221F3E6D00045630 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		54DB3724221F3E6D00045630 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				54DB36F5221F3CA300045630 /* ViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		54DB3725221F3E6D00045630 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		54DB3726221F3E6D00045630 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				54DB36F7221F3CA300045630 /* Main.storyboard */,
+				54DB36FC221F3CA400045630 /* LaunchScreen.storyboard */,
+				54DB3727221F3E6D00045630 /* XIB */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		54DB3727221F3E6D00045630 /* XIB */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = XIB;
+			sourceTree = "<group>";
+		};
+		54DB3728221F3E9300045630 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				54DB36FA221F3CA400045630 /* Assets.xcassets */,
+				54DB36FF221F3CA400045630 /* Info.plist */,
+			);
+			path = Assets;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
