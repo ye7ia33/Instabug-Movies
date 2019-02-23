@@ -32,6 +32,14 @@ class Instabug_MoviesTests: XCTestCase {
     }
     
     
+    func test_full_unitTest(){
+        self.testCodableDecode()
+        self.testCodableParseToJson()
+        self.testSaveCoreData()
+        self.testFeatchCoreData()
+        self.testMovieViewModel()
+    }
+    
     
     private let temp_model = Movie.init(id: 0 ,
                                                 title: "Movie Title",
@@ -73,7 +81,13 @@ class Instabug_MoviesTests: XCTestCase {
         print("Success Adding")
     }
     func testFeatchCoreData(){
-        
+        if let result = CoreDataHandler.featchData(entityName: Constant.entityMovieName) {
+             XCTAssert((result as Any) is [[String : AnyObject]])
+        }else{
+            fatalError("failures featch data")
+        }
+       
+
     }
     func testMovieViewModel()  {
         let temp_viewModel = MovieViewModel(movie: self.temp_model)

@@ -45,9 +45,9 @@ struct CoreDataHandler {
                 return jsonData
             }
             
-        } catch {
+        } catch let caught as NSError{
             
-            print("Failed")
+            print("Failed " , caught.localizedDescription)
         }
         
         
