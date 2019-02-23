@@ -10,7 +10,7 @@ import Foundation
 
 
 struct JsonHandler {
-    static func jsonToNSData(json: AnyObject) -> Data?{
+    static func jsonToNSData(json: [String : AnyObject]) -> Data?{
         do {
             return try JSONSerialization.data(withJSONObject: json, options: JSONSerialization.WritingOptions.prettyPrinted) as Data
         } catch let myJSONError {
@@ -18,4 +18,10 @@ struct JsonHandler {
         }
         return nil;
     }
+    
+    
+    
+    
+    
+    
 }

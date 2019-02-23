@@ -19,6 +19,8 @@ class MoviesListVC: UIViewController {
         didSet{
             let movieNib = UINib(nibName: "MovieCustomeCell", bundle: nil)
             self.movies_tableView.register(movieNib, forCellReuseIdentifier: cell_identifier)
+            self.movies_tableView.estimatedRowHeight = self.fixedRowHeight
+
         }
     }
     
@@ -53,11 +55,14 @@ class MoviesListVC: UIViewController {
             if let total_pages = jsonData["total_pages"] as? Int { self.total_pages = total_pages }
             if let moviesArray = jsonData["results"] as? NSArray {
                 for movie in moviesArray {
-                    let data = JsonHandler.jsonToNSData(json: movie as AnyObject)
-                    if let movieModel = CodableHandler.decode(Movie.self, from:data ?? Data()) as? Movie{
-                        let movieViewModel = MovieViewModel(movie: movieModel)
-                        self.moviesList.append(movieViewModel)
+                    if movie is [String : AnyObject] {
+                        let data = JsonHandler.jsonToNSData(json: movie as! [String : AnyObject])
+                        if let movieModel = CodableHandler.decode(Movie.self, from:data ?? Data()) as? Movie{
+                            let movieViewModel = MovieViewModel(movie: movieModel)
+                            self.moviesList.append(movieViewModel)
+                        }
                     }
+                 
                 }
                 DispatchQueue.main.async {
                     self.movies_tableView.reloadData()
@@ -76,18 +81,16 @@ class MoviesListVC: UIViewController {
 extension MoviesListVC  : UITableViewDataSource , UITableViewDelegate {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return moviesList.count
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
     
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return moviesList.count
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let row = indexPath.section
-        
+        let row = indexPath.row
         let cell = tableView.dequeueReusableCell(withIdentifier: cell_identifier, for: indexPath) as! MovieCustomeCell
-        
         let movieViewModel = self.moviesList[row]
         cell.movieViewModel = movieViewModel
         return cell
@@ -95,7 +98,10 @@ extension MoviesListVC  : UITableViewDataSource , UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.selectedIndexPath = indexPath
-        tableView.reloadRows(at: [indexPath], with: .none)
+       tableView.beginUpdates()
+        tableView.reloadRows(at: [indexPath], with: .automatic)
+        tableView.endUpdates()
+
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

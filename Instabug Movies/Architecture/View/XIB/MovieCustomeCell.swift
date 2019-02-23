@@ -37,7 +37,12 @@ class MovieCustomeCell: UITableViewCell {
     
     var movieViewModel : MovieViewModel! {
         didSet{
-            self.m_img_poster.imageFromServerURL(self.movieViewModel.img_poster ?? "" , placeHolder: UIImage(named: "movies_defualt_img"))
+            if movieViewModel.userMovie {
+                self.m_img_poster.image = UIImage.getFromDocuments(file_name: self.movieViewModel.img_poster ?? "" )
+            }else{
+                self.m_img_poster.imageFromServerURL(self.movieViewModel.img_poster ?? "" , placeHolder: UIImage(named: "movies_defualt_img"))
+            }
+
             self.m_lbl_date.text = self.movieViewModel.dateString
             self.m_lbl_title.text = self.movieViewModel.titleString
             self.m_lbl_overview.text = self.movieViewModel.overViewString
@@ -49,37 +54,3 @@ class MovieCustomeCell: UITableViewCell {
 
 
 
-
-let imageCache = NSCache<NSString, UIImage>()
-
-extension UIImageView {
-    
-    func imageFromServerURL(_ URLString: String, placeHolder: UIImage?) {
-        
-        self.image = nil
-        if let cachedImage = imageCache.object(forKey: NSString(string: URLString)) {
-            self.image = cachedImage
-            return
-        }
-        
-        if let url = URL(string: URLString) {
-            URLSession.shared.dataTask(with: url, completionHandler: { (data, response, error) in
-                if error != nil {
-                    print("ERROR LOADING IMAGES FROM URL: \(error?.localizedDescription ?? "falid Error")")
-                    DispatchQueue.main.async {
-                        self.image = placeHolder
-                    }
-                    return
-                }
-                DispatchQueue.main.async {
-                    if let data = data {
-                        if let downloadedImage = UIImage(data: data) {
-                            imageCache.setObject(downloadedImage, forKey: NSString(string: URLString))
-                            self.image = downloadedImage
-                        }
-                    }
-                }
-            }).resume()
-        }
-    }
-}

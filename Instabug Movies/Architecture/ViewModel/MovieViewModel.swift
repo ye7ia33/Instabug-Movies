@@ -15,13 +15,17 @@ struct MovieViewModel {
     var dateString : String?
     var titleString : String?
     var overViewString : String?
+    var userMovie = false
     
-     init(movie : Movie) {
+    init(movie : Movie , isUserMovie : Bool = false) {
         self.dateString = movie.release_date
         self.titleString = movie.title
         self.overViewString = movie.overview
-        if movie.poster_path != nil {
-            self.img_poster = "https://image.tmdb.org/t/p/w200\(movie.poster_path!)?1"
+        self.userMovie = isUserMovie
+        if movie.poster_path != nil && isUserMovie == false{
+            self.img_poster = "\(Constant.imgUrl)\(movie.poster_path!)"
+        }else{
+            self.img_poster = movie.poster_path
         }
     }
 }
