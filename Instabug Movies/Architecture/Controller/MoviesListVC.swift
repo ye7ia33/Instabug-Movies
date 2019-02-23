@@ -9,6 +9,11 @@
 import UIKit
 
 class MoviesListVC: UIViewController {
+    @IBOutlet weak var loaderViewController: UIView! {
+        didSet{
+            self.loaderViewController.isHidden = true
+        }
+    }
     fileprivate let cell_identifier = "MovieCellIdentifier"
     fileprivate var page_number = 0
     fileprivate var total_pages : Int!
@@ -42,14 +47,25 @@ class MoviesListVC: UIViewController {
         if self.serverIsConnect {return}
         // closing featching data from server
         self.serverIsConnect = true
+    
+        self.loaderViewController.isHidden = false
         
-        let url = "http://api.themoviedb.org/3/discover/movie"
         let urlQueryItems = ["page" : "\(page_number + 1)"]
         let httpMethod = HttpMethodTyppe.GET
         
-        NetworkManager.shared.connection(stringUrl: url , urlQueryItems:urlQueryItems, httpMethod: httpMethod , Result: {(result , statusCode , errMessage) in
+        NetworkManager.shared.connection(stringUrl: Constant.baseURL ,
+                                         urlQueryItems:urlQueryItems,
+                                         httpMethod: httpMethod , Result: {(result , statusCode , errMessage) in
             
-            if errMessage != nil {return}
+            if errMessage != nil {
+                
+                DispatchQueue.main.async {
+                    self.loaderViewController.isHidden = true
+                    self.showToast(message: errMessage ?? "Can`t Featch Data" )
+                }
+                self.serverIsConnect = false
+                return
+            }
             guard let jsonData = result as? [String : AnyObject] else {return}
             if let page_num = jsonData["page"] as? Int { self.page_number = page_num }
             if let total_pages = jsonData["total_pages"] as? Int { self.total_pages = total_pages }
@@ -66,6 +82,7 @@ class MoviesListVC: UIViewController {
                 }
                 DispatchQueue.main.async {
                     self.movies_tableView.reloadData()
+                    self.loaderViewController.isHidden = true
                     self.serverIsConnect = false
                 }
                 

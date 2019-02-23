@@ -29,12 +29,18 @@
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="DmA-2P-Kz7" id="l84-mP-254"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Movie Date" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jtk-UX-QOZ">
                                 <rect key="frame" x="16" y="368" width="343" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="DmA-2P-Kz7" id="hj1-0g-l1y"/>
+                                </connections>
                             </textField>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="h8f-g9-2m4">
                                 <rect key="frame" x="16" y="406" width="343" height="150"/>
@@ -45,6 +51,9 @@
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <connections>
+                                    <outlet property="delegate" destination="DmA-2P-Kz7" id="fQL-Rj-xwl"/>
+                                </connections>
                             </textView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VA0-56-sHb">
                                 <rect key="frame" x="112.5" y="272" width="150" height="50"/>
@@ -126,12 +135,52 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="wAP-XS-Eiq"/>
                                 </connections>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mMH-ad-tEN">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7UW-iz-0Ag">
+                                        <rect key="frame" x="97.5" y="251.5" width="180" height="100"/>
+                                        <subviews>
+                                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="VbF-RH-h2T">
+                                                <rect key="frame" x="71.5" y="8" width="37" height="37"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="color" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </activityIndicatorView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading Data" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Iju-1g-ykZ">
+                                                <rect key="frame" x="8" y="53" width="164" height="30"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="Iju-1g-ykZ" firstAttribute="top" secondItem="VbF-RH-h2T" secondAttribute="bottom" constant="8" id="BSc-PJ-Sae"/>
+                                            <constraint firstItem="VbF-RH-h2T" firstAttribute="centerX" secondItem="7UW-iz-0Ag" secondAttribute="centerX" id="Qt5-o2-xMm"/>
+                                            <constraint firstItem="VbF-RH-h2T" firstAttribute="top" secondItem="7UW-iz-0Ag" secondAttribute="top" constant="8" id="XpJ-gp-GtL"/>
+                                            <constraint firstAttribute="trailing" secondItem="Iju-1g-ykZ" secondAttribute="trailing" constant="8" id="ZyP-DH-tMi"/>
+                                            <constraint firstAttribute="width" constant="180" id="g3q-56-A8i"/>
+                                            <constraint firstItem="Iju-1g-ykZ" firstAttribute="leading" secondItem="7UW-iz-0Ag" secondAttribute="leading" constant="8" id="qEp-i9-tBv"/>
+                                            <constraint firstAttribute="height" constant="100" id="wl9-he-eEg"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" red="0.083751417699999997" green="0.14062061910000001" blue="0.20029336210000001" alpha="0.35696703769999999" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstItem="7UW-iz-0Ag" firstAttribute="centerY" secondItem="mMH-ad-tEN" secondAttribute="centerY" id="4HO-dZ-TT6"/>
+                                    <constraint firstItem="7UW-iz-0Ag" firstAttribute="centerX" secondItem="mMH-ad-tEN" secondAttribute="centerX" id="Amn-x5-w1L"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="mMH-ad-tEN" secondAttribute="trailing" id="GbM-Ss-vch"/>
+                            <constraint firstItem="mMH-ad-tEN" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="OUQ-Wm-IHU"/>
                             <constraint firstItem="u0m-8d-jyY" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="bAV-lE-Tlf"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="mMH-ad-tEN" secondAttribute="bottom" id="bKe-bR-Jdf"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="u0m-8d-jyY" secondAttribute="trailing" id="gyG-we-BkA"/>
                             <constraint firstItem="u0m-8d-jyY" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="jdJ-Jn-vTR"/>
+                            <constraint firstItem="mMH-ad-tEN" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="q76-8o-vSj"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="u0m-8d-jyY" secondAttribute="bottom" id="uto-SR-G34"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -150,6 +199,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="loaderViewController" destination="mMH-ad-tEN" id="hbY-Ra-ndT"/>
                         <outlet property="movies_tableView" destination="u0m-8d-jyY" id="Owm-bY-dcr"/>
                     </connections>
                 </viewController>

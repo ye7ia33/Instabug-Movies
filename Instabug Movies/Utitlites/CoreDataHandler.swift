@@ -19,12 +19,15 @@ struct CoreDataHandler {
         if let entity = NSEntityDescription.entity(forEntityName: entityName, in: context) {
             let dataInfo = NSManagedObject(entity: entity, insertInto: context)
             dataInfo.setValuesForKeys(entityData)
-            do {
-                try context.save()
-                return true
-            } catch {
-                print("Failed saving")
+            if context.hasChanges {
+                do {
+                    try context.save()
+                    return true
+                } catch {
+                    print("Failed saving")
+                }
             }
+            
         }
    
 

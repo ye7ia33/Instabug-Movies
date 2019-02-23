@@ -69,7 +69,11 @@ extension UserMoviesVC  : UITableViewDataSource , UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if self.selectedIndexPath == indexPath &&
             //            Check if cell open
-            tableView.cellForRow(at: indexPath)?.frame.height == fixedRowHeight{
+            tableView.cellForRow(at: indexPath)?.frame.height == fixedRowHeight &&
+            // if  UITableView.automaticDimension > fixedRowHeight
+            // retrun fixed Size
+            UITableView.automaticDimension > fixedRowHeight
+            {
             return UITableView.automaticDimension
         }
         return fixedRowHeight
