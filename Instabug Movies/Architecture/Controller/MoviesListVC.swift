@@ -35,7 +35,9 @@ class MoviesListVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        view.accessibilityIdentifier = "movieListView"
+        self.movies_tableView.accessibilityIdentifier = "movies_tableView"
+
         self.refreshControl.addTarget(self, action: #selector(pullToRefresh), for: .allEvents)
         self.movies_tableView.insertSubview(refreshControl , at: 0)
 
@@ -91,10 +93,7 @@ extension MoviesListVC  : UITableViewDataSource , UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if self.selectedIndexPath == indexPath &&
         // Check if cell open
-            tableView.cellForRow(at: indexPath)?.frame.height == fixedRowHeight &&
-        // if  UITableView.automaticDimension > fixedRowHeight
-        // retrun fixed Size
-        UITableView.automaticDimension > fixedRowHeight
+            tableView.cellForRow(at: indexPath)?.frame.height == fixedRowHeight
         {
             return UITableView.automaticDimension
         }

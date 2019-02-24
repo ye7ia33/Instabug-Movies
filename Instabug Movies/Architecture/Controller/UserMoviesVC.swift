@@ -19,6 +19,8 @@ class UserMoviesVC: UIViewController {
             let movieNib = UINib(nibName: "MovieCustomeCell", bundle: nil)
             self.myMovies_tableView.register(movieNib, forCellReuseIdentifier: cell_identifier)
             self.myMovies_tableView.estimatedRowHeight = self.fixedRowHeight
+            self.myMovies_tableView.accessibilityIdentifier = "myMovies_tableView"
+
             
         }
     }
@@ -27,6 +29,7 @@ class UserMoviesVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        return
         self.viewModel.getLocal_data()
         self.viewModel.completionHandler = {
             self.myMovies_tableView.reloadData()

@@ -42,6 +42,8 @@ class NewMoviesVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        
+        return
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(self.keyboardWillShow),
                                                name: UIResponder.keyboardWillShowNotification,
@@ -95,7 +97,8 @@ class NewMoviesVC: UIViewController {
         let alert = UIAlertController(title: "!",
                                       message: "This app is not authorized to use Photo Libary.",
                                       preferredStyle: .alert)
-        
+       alert.view.accessibilityIdentifier = "alert_photosAuth"
+
         alert.addAction(UIAlertAction(title: "Setting", style: .default, handler: { (_) in
             DispatchQueue.main.async {
                 if let settingsURL = URL(string: UIApplication.openSettingsURLString) {
@@ -228,7 +231,7 @@ extension NewMoviesVC : UITextFieldDelegate {
     }
     @IBAction func pickerView_toolBarAction_done (sender : AnyObject){
         let formatter = DateFormatter()
-        formatter.dateFormat = "dd/mm/yyyy"
+        formatter.dateFormat = "dd/MM/yyyy"
         let local =  Locale(identifier: "en_US")
         formatter.locale = local
         
