@@ -8,24 +8,43 @@
 
 import UIKit
 
-struct MovieViewModel {
-    
-    
-    var img_poster : String?
-    var dateString : String?
-    var titleString : String?
-    var overViewString : String?
+class MovieViewModel {
+    fileprivate var page_number = 1
+    fileprivate var total_pages : Int!
+    var moviesList = [Movie]()
+    var completionHandler:()->Void = {}
     var userMovie = false
     
-    init(movie : Movie , isUserMovie : Bool = false) {
-        self.dateString = movie.release_date
-        self.titleString = movie.title
-        self.overViewString = movie.overview
-        self.userMovie = isUserMovie
-        if movie.poster_path != nil && isUserMovie == false{
-            self.img_poster = "\(Constant.imgUrl)\(movie.poster_path!)"
-        }else{
-            self.img_poster = movie.poster_path
+
+     func getLocal_data(){
+        if let userMovie = CoreDataHandler.featchData(entityName: Constant.entityMovieName) as? [[String : AnyObject]]{
+            for movie in userMovie {
+                if let movieJson = JsonHandler.jsonToNSData(json: movie) {
+                    guard let movieModel = CodableHandler.decode(Movie.self, from: movieJson) as? Movie else {continue}
+                    self.moviesList.append(movieModel)
+                }
+            }
+            self.completionHandler()
         }
     }
+    
+    func getRemote_data() {
+       
+        if self.total_pages != nil && self.total_pages <= self.moviesList.count {return}
+        MovieAPIManager.feachMoviesFromServer(page_number: self.page_number) {
+                    (moviesResult , page_number , total_pages) in
+            self.page_number = page_number ?? 1
+            self.total_pages = total_pages
+            guard let listOfNewMovies = moviesResult else {
+               self.completionHandler()
+                return
+            }
+            self.moviesList.append(contentsOf: listOfNewMovies)
+            self.completionHandler()
+        }
+       
+    }
+    
+    
+    
 }

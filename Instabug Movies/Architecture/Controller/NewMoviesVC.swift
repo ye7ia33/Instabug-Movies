@@ -41,18 +41,20 @@ class NewMoviesVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-  
+
         NotificationCenter.default.addObserver(self,
-                                               selector: #selector(keyboardWillShow),
+                                               selector: #selector(self.keyboardWillShow),
                                                name: UIResponder.keyboardWillShowNotification,
                                                object: nil)
         
         NotificationCenter.default.addObserver(self,
-                                               selector: #selector(keyboardWillHide),
-                                               name: UIResponder.keyboardWillHideNotification, object: nil)
+                                               selector: #selector(self.keyboardWillHide),
+                                               name: UIResponder.keyboardWillHideNotification,
+                                               object: nil)
 
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(keyboardWillHide))
-        view.addGestureRecognizer(tap)
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self,
+                                                                 action: #selector(keyboardWillHide))
+        self.view.addGestureRecognizer(tap)
 
 }
     
@@ -150,17 +152,20 @@ class NewMoviesVC: UIViewController {
         let number: Int = 10
         let poster_name = Int(arc4random_uniform(UInt32(number)))
         
-        let movieModel = Movie.init(id: 0, title: title ,
-                                    overview: overView ,
-                                    release_date: date,
-                                    poster_path: "\(poster_name)" )
+        let movieModel = Movie.init(id: 0,
+                                    title: title ?? "",
+                                    overview: overView ?? "",
+                                    release_date: date ?? "",
+                                    poster_path: "\(poster_name)" ,
+                                    isUserMovie : true
+                                    )
 
         
         if CoreDataHandler.inset(entityName: Constant.entityMovieName ,
                                  entityData: CodableHandler.encode(movieModel) as! [String : AnyObject])
         {
             self.newMovie_poster.image?.saveToDocuments(filename: "\(poster_name)")
-            self.showToast(message: "Movie Saved")
+//            self.showToast(message: "Movie Saved")
             self.navigationController?.popViewController(animated: true)
         }else{
             let alert = UIAlertController(title: "!", message: "Movie not Save", preferredStyle: .alert)

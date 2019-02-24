@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0F5537BC22229CA300A5FAEF /* MovieAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F5537BB22229CA300A5FAEF /* MovieAPIManager.swift */; };
 		54BA3CB02220B2EC00092AC2 /* MoviesDB.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 54BA3CAE2220B2EC00092AC2 /* MoviesDB.xcdatamodeld */; };
 		54BA3CB22220B36800092AC2 /* UserMoviesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54BA3CB12220B36800092AC2 /* UserMoviesVC.swift */; };
 		54BA3CF1222133A600092AC2 /* CoreDataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54BA3CF0222133A600092AC2 /* CoreDataHandler.swift */; };
@@ -49,6 +50,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0F5537BB22229CA300A5FAEF /* MovieAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieAPIManager.swift; sourceTree = "<group>"; };
 		54BA3CAF2220B2EC00092AC2 /* MoviesDB.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MoviesDB.xcdatamodel; sourceTree = "<group>"; };
 		54BA3CB12220B36800092AC2 /* UserMoviesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserMoviesVC.swift; sourceTree = "<group>"; };
 		54BA3CF0222133A600092AC2 /* CoreDataHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataHandler.swift; sourceTree = "<group>"; };
@@ -200,6 +202,7 @@
 			isa = PBXGroup;
 			children = (
 				54DB372B221F3FC900045630 /* NetworkManager.swift */,
+				0F5537BB22229CA300A5FAEF /* MovieAPIManager.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -384,6 +387,7 @@
 			files = (
 				54BA3CF52221986700092AC2 /* UIViewController+Extension.swift in Sources */,
 				54DAF7892220A447006C4DB9 /* NewMoviesVC.swift in Sources */,
+				0F5537BC22229CA300A5FAEF /* MovieAPIManager.swift in Sources */,
 				54DB36F6221F3CA300045630 /* MoviesListVC.swift in Sources */,
 				54BA3CF322215EA000092AC2 /* Constant.swift in Sources */,
 				54DB36F4221F3CA300045630 /* AppDelegate.swift in Sources */,

@@ -23,20 +23,15 @@ class UserMoviesVC: UIViewController {
         }
     }
     
-    fileprivate var moviesList = [MovieViewModel]()
-    
+    var viewModel = MovieViewModel()
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-    if let userMovie = CoreDataHandler.featchData(entityName: Constant.entityMovieName) as? [[String : AnyObject]]{
-        for movie in userMovie {
-            if let movieJson = JsonHandler.jsonToNSData(json: movie) {
-                let movieModel = CodableHandler.decode(Movie.self, from: movieJson)
-                let viewModel = MovieViewModel.init(movie: movieModel as! Movie , isUserMovie: true)
-                self.moviesList.append(viewModel)
-            }
+        self.viewModel.getLocal_data()
+        self.viewModel.completionHandler = {
+            self.myMovies_tableView.reloadData()
         }
-         }
+  
     }
 }
 
@@ -47,14 +42,15 @@ extension UserMoviesVC  : UITableViewDataSource , UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return moviesList.count
+        return viewModel.moviesList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let row = indexPath.row
         let cell = tableView.dequeueReusableCell(withIdentifier: cell_identifier, for: indexPath) as! MovieCustomeCell
-        let movieViewModel = self.moviesList[row]
-        cell.movieViewModel = movieViewModel
+
+        let tempMovieModel = viewModel.moviesList[row]
+        cell.movieModel = tempMovieModel
         return cell
     }
     

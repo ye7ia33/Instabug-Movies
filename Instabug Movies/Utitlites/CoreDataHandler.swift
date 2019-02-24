@@ -13,11 +13,12 @@ struct CoreDataHandler {
 
    static func inset(entityName : String , entityData : [String : AnyObject] )->Bool{
         let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-        // unique Data
+        // Mearge if Duplicated Data
         context.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
 
         if let entity = NSEntityDescription.entity(forEntityName: entityName, in: context) {
             let dataInfo = NSManagedObject(entity: entity, insertInto: context)
+    
             dataInfo.setValuesForKeys(entityData)
             if context.hasChanges {
                 do {

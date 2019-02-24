@@ -10,7 +10,11 @@ import UIKit
 
 class MovieCustomeCell: UITableViewCell {
     
-    @IBOutlet weak var m_img_poster: UIImageView!
+    @IBOutlet weak var m_img_poster: CustomeUIImageView!{
+        didSet{
+            self.m_img_poster.image = nil
+        }
+    }
     
     @IBOutlet weak var m_lbl_date: UILabel!{
         didSet{
@@ -33,20 +37,23 @@ class MovieCustomeCell: UITableViewCell {
         super.awakeFromNib()
         self.selectionStyle = .none
     }
- 
-    
-    var movieViewModel : MovieViewModel! {
+   
+    var movieModel : Movie! {
         didSet{
-            if movieViewModel.userMovie {
-                self.m_img_poster.image = UIImage.getFromDocuments(file_name: self.movieViewModel.img_poster ?? "" )
-            }else{
-                self.m_img_poster.imageFromServerURL(self.movieViewModel.img_poster ?? "" , placeHolder: UIImage(named: "movies_defualt_img"))
-            }
-
-            self.m_lbl_date.text = self.movieViewModel.dateString
-            self.m_lbl_title.text = self.movieViewModel.titleString
-            self.m_lbl_overview.text = self.movieViewModel.overViewString
+            
+                if self.movieModel.isUserMovie ?? false {
+                    self.m_img_poster.image = UIImage.getFromDocuments(file_name: self.movieModel.poster_path ?? "" )
+                }else{
+                    let img_url = Constant.imgUrl + (self.movieModel.poster_path ?? "")
+                    self.m_img_poster.imageFromServerURL( img_url , placeHolder: UIImage(named: "movies_defualt_img"))
+                }
+                
+                self.m_lbl_date.text = self.movieModel.release_date
+                self.m_lbl_title.text = self.movieModel.title
+                self.m_lbl_overview.text = self.movieModel.overview
+            
         }
+   
     }
     
     

@@ -37,7 +37,7 @@ class Instabug_MoviesTests: XCTestCase {
         self.testCodableParseToJson()
         self.testSaveCoreData()
         self.testFeatchCoreData()
-        self.testMovieViewModel()
+        
     }
     
     
@@ -45,7 +45,8 @@ class Instabug_MoviesTests: XCTestCase {
                                                 title: "Movie Title",
                                                 overview: "Movie Overview",
                                                 release_date: "12/01/2019",
-                                                poster_path: "poster url path")
+                                                poster_path: "poster url path" ,
+                                                isUserMovie : false)
     
     func testCodableDecode(){
         let temp_jsonData = ["title":"temp Title" as AnyObject,
@@ -86,19 +87,7 @@ class Instabug_MoviesTests: XCTestCase {
        
 
     }
-    func testMovieViewModel()  {
-        var temp_viewModel = MovieViewModel(movie: self.temp_model)
-        XCTAssertEqual(temp_viewModel.titleString , self.temp_model.title)
-        XCTAssertEqual(temp_viewModel.overViewString , self.temp_model.overview)
-        XCTAssertEqual(temp_viewModel.dateString , self.temp_model.release_date)
-        XCTAssertEqual(temp_viewModel.img_poster , "\(Constant.imgUrl)\(self.temp_model.poster_path ?? "")")
-        
-        temp_viewModel = MovieViewModel(movie: self.temp_model , isUserMovie : true)
-        XCTAssertEqual(temp_viewModel.img_poster , self.temp_model.poster_path ?? "")
-        
-        print("Passed")
-
-    }
+   
     
     
     

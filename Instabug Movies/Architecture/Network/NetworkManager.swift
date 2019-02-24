@@ -5,8 +5,9 @@
 //  Created by Yahia El-Dow on 2/21/19.
 //  Copyright © 2019 Instabug. All rights reserved.
 //
-
+import UIKit
 import Foundation
+
 enum HttpMethodTyppe : String {
     case GET = "GET"
     case Post = "POST"
@@ -34,9 +35,8 @@ class NetworkManager : NSObject {
                     urlQueryItems: [String : String] = [:] ,
                     httpMethod : HttpMethodTyppe = HttpMethodTyppe.GET ,
                     paramters : [String : AnyObject] = [:] ,
-                    Result:@escaping(_ jsonData : Any? ,_ statusCode : Int? , _ errorMessage : String?)->()) {
+                    Result:@escaping(_ jsonData : Any?)->()) {
 
-        
         var uRLQueryItems = [URLQueryItem]()
         //TODO: adding the API KEY
         uRLQueryItems.append(self.api_queryItem)
@@ -58,19 +58,63 @@ class NetworkManager : NSObject {
            
            var statusCode = -1
             guard let unwrappedData = data else {
-                Result(nil , statusCode , error?.localizedDescription)
+                let errMessage = error?.localizedDescription ?? "can`t load data"
+                self.hitErrorToUser(errMessage: errMessage)
+                Result(nil)
                 return
             }
             if let httpResponse = response as? HTTPURLResponse { statusCode = httpResponse.statusCode }
             do {
             let json = try JSONSerialization.jsonObject(with: unwrappedData, options: .mutableContainers)
-                Result(json , statusCode  , error?.localizedDescription)
+                
+                if statusCode != 200 {
+                    let errMessage = self.errorHandleMessage(errorCode: statusCode)
+                    self.hitErrorToUser(errMessage: errMessage)
+                    Result(nil)
+                    return
+                }
+                Result(json)
             } catch {
-                Result(nil , statusCode , error.localizedDescription)
+                self.hitErrorToUser(errMessage: "Error try again")
+                Result(nil)
                 print("json error: \(error.localizedDescription)")
             }
         }
 
         task.resume()
     }
+    
+    
+    
+    
+    
+ private  func errorHandleMessage (errorCode : Int)-> String {
+        switch errorCode {
+            case 401:
+                return "Invalid API key."
+            case 404:
+                return "The resource you requested could not be found."
+            default:
+                return ""
+        }
+    
+    }
+    
+    
+    
+ private func hitErrorToUser(errMessage  : String ){
+        
+        DispatchQueue.main.async {
+            if let vc = UIApplication.shared.keyWindow?.rootViewController {
+                var topController =  vc
+                while (topController.presentedViewController != nil) {
+                    topController = topController.presentedViewController!
+                }
+                topController.showToast(message: errMessage)
+            }
+            
+        }
+    }
+    
 }
+
