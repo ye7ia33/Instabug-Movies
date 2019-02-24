@@ -42,8 +42,6 @@ class NewMoviesVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        
-        return
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(self.keyboardWillShow),
                                                name: UIResponder.keyboardWillShowNotification,
@@ -54,9 +52,7 @@ class NewMoviesVC: UIViewController {
                                                name: UIResponder.keyboardWillHideNotification,
                                                object: nil)
 
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self,
-                                                                 action: #selector(keyboardWillHide))
-        self.view.addGestureRecognizer(tap)
+      self.hideKeyboardWhenTapped()
 
 }
     

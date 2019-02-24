@@ -29,7 +29,7 @@ class UserMoviesVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        return
+        
         self.viewModel.getLocal_data()
         self.viewModel.completionHandler = {
             self.myMovies_tableView.reloadData()
