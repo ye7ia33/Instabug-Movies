@@ -5,7 +5,9 @@
 
 2- User can add a new Movie and display own list  
 
+
 ## Technicality INFO
+
 - using URLSession to calling API
 
 - using Core Data to save a local Movies INFO
@@ -14,6 +16,6 @@
 
 - Create Unit Test and UI with Apple XCTest Framework
 
--MVVM Architecture
+- MVVM Architecture
 
 Instabug iOS Assessment Task, List of movies
