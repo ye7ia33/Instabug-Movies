@@ -12,7 +12,7 @@ import CoreData
 class UserMoviesVC: UIViewController {
     fileprivate let cell_identifier = "MovieCellIdentifier"
     fileprivate var selectedIndexPath : IndexPath!
-    fileprivate var fixedRowHeight : CGFloat = 216.0
+    fileprivate var fixedRowHeight : CGFloat = 120.0
     fileprivate var serverIsConnect = false
     @IBOutlet weak var myMovies_tableView: UITableView!{
         didSet{

@@ -49,7 +49,8 @@ class Instabug_MoviesTests: XCTestCase {
                                                 isUserMovie : false)
     
     func testCodableDecode(){
-        let temp_jsonData = ["title":"temp Title" as AnyObject,
+        let temp_jsonData = ["id" : 1 as AnyObject,
+                             "title":"temp Title" as AnyObject,
                              "overview" : "temp overview"  as AnyObject,
                              "release_date": "12/01/2019" as AnyObject ,
                              "poster_path" : "poster url path" as AnyObject]
