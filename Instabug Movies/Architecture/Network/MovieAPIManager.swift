@@ -40,6 +40,7 @@ class MovieAPIManager: NSObject {
                         }
                     }
                 }
+                
                 Result(moviesModelArray , page_num , total_pages)
             }
         })

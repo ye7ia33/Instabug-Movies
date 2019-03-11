@@ -45,7 +45,7 @@ class NewMoviesVC: UIViewController {
                                                        selector: #selector(self.keyboardWillShow),
                                                        name: UIResponder.keyboardWillShowNotification,
                                                        object: nil)
-        
+
                 NotificationCenter.default.addObserver(self,
                                                        selector: #selector(self.keyboardWillHide),
                                                        name: UIResponder.keyboardWillHideNotification,
