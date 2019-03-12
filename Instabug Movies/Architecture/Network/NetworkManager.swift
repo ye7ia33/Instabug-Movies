@@ -37,8 +37,6 @@ class NetworkManager : NSObject {
                     paramters : [String : AnyObject] = [:] ,
                     Result:@escaping(_ jsonData : Any?)->()) {
 
-        print(stringUrl)
-        print(urlQueryItems)
         var uRLQueryItems = [URLQueryItem]()
         //TODO: adding the API KEY
         uRLQueryItems.append(self.api_queryItem)

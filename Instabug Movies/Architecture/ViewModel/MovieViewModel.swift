@@ -40,7 +40,6 @@ class MovieViewModel {
                self.completionHandler(nil)
                 return
             }
-
             self.completionHandler(listOfNewMovies)
         }
        

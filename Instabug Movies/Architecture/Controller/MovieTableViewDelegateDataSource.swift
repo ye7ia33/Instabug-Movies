@@ -12,8 +12,8 @@ class MovieTableViewDelegateDataSource : NSObject , UITableViewDataSource  {
    fileprivate var cellIdentifier : String!
    fileprivate var fixedRowHeight : CGFloat!
    fileprivate var selectedIndexPath : IndexPath!
-    var moviesList = [Movie]()
-    var loadMoreData : ()->() = {}
+   var moviesList = [Movie]()
+   var loadMoreData : ()->() = {}
     
     init(cellIdentifier : String = Constant.movie_cell_identifier , fixedRowHeight : CGFloat) {
         self.cellIdentifier = cellIdentifier
