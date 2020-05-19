@@ -39,19 +39,20 @@ class NewMoviesVC: UIViewController {
 
     fileprivate var picker_movieRelaseDate : UIDatePicker = UIDatePicker()
 
+    override func loadView() {
+        super.loadView()
+                NotificationCenter.default.addObserver(self,
+                                                       selector: #selector(self.keyboardWillShow),
+                                                       name: UIResponder.keyboardWillShowNotification,
+                                                       object: nil)
+
+                NotificationCenter.default.addObserver(self,
+                                                       selector: #selector(self.keyboardWillHide),
+                                                       name: UIResponder.keyboardWillHideNotification,
+                                                       object: nil)
+    }
     override func viewDidLoad() {
-        super.viewDidLoad()
-
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(self.keyboardWillShow),
-                                               name: UIResponder.keyboardWillShowNotification,
-                                               object: nil)
-        
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(self.keyboardWillHide),
-                                               name: UIResponder.keyboardWillHideNotification,
-                                               object: nil)
-
+      super.viewDidLoad()
       self.hideKeyboardWhenTapped()
 
 }
@@ -164,7 +165,6 @@ class NewMoviesVC: UIViewController {
                                  entityData: CodableHandler.encode(movieModel) as! [String : AnyObject])
         {
             self.newMovie_poster.image?.saveToDocuments(filename: "\(poster_name)")
-//            self.showToast(message: "Movie Saved")
             self.navigationController?.popViewController(animated: true)
         }else{
             let alert = UIAlertController(title: "!", message: "Movie not Save", preferredStyle: .alert)

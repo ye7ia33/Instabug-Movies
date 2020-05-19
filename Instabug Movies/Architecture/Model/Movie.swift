@@ -17,7 +17,6 @@ struct Movie : Codable {
     let poster_path : String?
     var isUserMovie : Bool? = false
     
-    
     init(id : Int , title: String , overview : String , release_date : String , poster_path: String ,isUserMovie : Bool = false ) {
         self.id = id
         self.title = title
@@ -26,6 +25,7 @@ struct Movie : Codable {
         self.poster_path = poster_path
         self.isUserMovie = isUserMovie
     }
+    
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decode(Int.self, forKey: .id)

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		041BC6242236936000F8AC4A /* MovieTableViewDelegateDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041BC6232236936000F8AC4A /* MovieTableViewDelegateDataSource.swift */; };
 		0F5537BC22229CA300A5FAEF /* MovieAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F5537BB22229CA300A5FAEF /* MovieAPIManager.swift */; };
 		54BA3CB02220B2EC00092AC2 /* MoviesDB.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 54BA3CAE2220B2EC00092AC2 /* MoviesDB.xcdatamodeld */; };
 		54BA3CB22220B36800092AC2 /* UserMoviesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54BA3CB12220B36800092AC2 /* UserMoviesVC.swift */; };
@@ -50,6 +51,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		041BC6232236936000F8AC4A /* MovieTableViewDelegateDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieTableViewDelegateDataSource.swift; sourceTree = "<group>"; };
 		0F5537BB22229CA300A5FAEF /* MovieAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieAPIManager.swift; sourceTree = "<group>"; };
 		54BA3CAF2220B2EC00092AC2 /* MoviesDB.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MoviesDB.xcdatamodel; sourceTree = "<group>"; };
 		54BA3CB12220B36800092AC2 /* UserMoviesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserMoviesVC.swift; sourceTree = "<group>"; };
@@ -213,6 +215,7 @@
 				54DB36F5221F3CA300045630 /* MoviesListVC.swift */,
 				54DAF7882220A447006C4DB9 /* NewMoviesVC.swift */,
 				54BA3CB12220B36800092AC2 /* UserMoviesVC.swift */,
+				041BC6232236936000F8AC4A /* MovieTableViewDelegateDataSource.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -401,6 +404,7 @@
 				54DAF78122205ADF006C4DB9 /* CodableHandler.swift in Sources */,
 				54DAF78B2220AD95006C4DB9 /* UIImage+Extension.swift in Sources */,
 				54BA3CB02220B2EC00092AC2 /* MoviesDB.xcdatamodeld in Sources */,
+				041BC6242236936000F8AC4A /* MovieTableViewDelegateDataSource.swift in Sources */,
 				54DAF77F221FE3D4006C4DB9 /* MovieViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
