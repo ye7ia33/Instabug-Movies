@@ -14,14 +14,11 @@ class MoviesListVC: UIViewController {
             self.loaderViewController.isHidden = true
         }
     }
-<<<<<<< HEAD
+
     fileprivate let cell_identifier = "MovieCellIdentifier"
     fileprivate var selectedIndexPath : IndexPath!
     fileprivate var fixedRowHeight : CGFloat = 216.0
     fileprivate var serverIsConnect = false
-=======
-
->>>>>>> a66baaca3df8f217c54dfc11e96ce67d5aebe2dd
     @IBOutlet weak var movies_tableView: UITableView!{
         didSet{
             self.movies_tableView.accessibilityIdentifier = "movies_tableView"
@@ -31,8 +28,7 @@ class MoviesListVC: UIViewController {
     }
     fileprivate var refreshControl = UIRefreshControl()
 
-    fileprivate var serverIsConnect = false
-    
+
     let viewModel = MovieViewModel()
    
    private var dataSource_and_delegate : MovieTableViewDelegateDataSource = {
